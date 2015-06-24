@@ -665,7 +665,7 @@ class FSBOQuiz
         }
 
         foreach ($feedback as $key => $value) {
-            if ($score > $value[1] && $score < $value[2]) {
+            if ($score >= $value[1] && $score <= $value[2]) {
                 $response = $value[0];
                 break;
             }
