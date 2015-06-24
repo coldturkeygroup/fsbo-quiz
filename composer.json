@@ -1,0 +1,26 @@
+{
+  "name": "coldturkeygroup/fsbo-quiz",
+  "description": "Simple real estate lead generation through a quiz that helps qualify prospective home sellers.",
+  "homepage": "http://coldturkeygroup.com/",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Cold Turkey Group",
+      "email": "support@coldturkeygroup.com",
+      "homepage": "https://coldturkeygroup.com"
+    }
+  ],
+  "autoload": {
+    "classmap": [
+      "classes"
+    ]
+  },
+  "config": {
+    "vendor-dir": "assets/vendor"
+  },
+  "type": "wordpress-plugin",
+  "require": {
+    "php": ">=5.4.0",
+    "guzzlehttp/guzzle": "~4.0"
+  }
+}
