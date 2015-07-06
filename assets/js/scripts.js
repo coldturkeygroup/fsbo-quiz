@@ -103,40 +103,6 @@ jQuery(function ($) {
                         $('#user_id').val(response.user_id);
                         $('#quiz-back').hide();
 
-                        var retargeting = $('#retargeting').val(),
-                            conversion = $('#conversion').val();
-                        if (retargeting != '') {
-                            (function () {
-                                var _fbq = window._fbq || (window._fbq = []);
-                                if (!_fbq.loaded) {
-                                    var fbds = document.createElement('script');
-                                    fbds.async = true;
-                                    fbds.src = '//connect.facebook.net/en_US/fbds.js';
-                                    var s = document.getElementsByTagName('script')[0];
-                                    s.parentNode.insertBefore(fbds, s);
-                                    _fbq.loaded = true;
-                                }
-                                _fbq.push(['addPixelId', retargeting]);
-                            })();
-                            window._fbq = window._fbq || [];
-                            window._fbq.push(['track', 'PixelInitialized', {}]);
-                        }
-                        if (conversion != '') {
-                            (function () {
-                                var _fbq = window._fbq || (window._fbq = []);
-                                if (!_fbq.loaded) {
-                                    var fbds = document.createElement('script');
-                                    fbds.async = true;
-                                    fbds.src = '//connect.facebook.net/en_US/fbds.js';
-                                    var s = document.getElementsByTagName('script')[0];
-                                    s.parentNode.insertBefore(fbds, s);
-                                    _fbq.loaded = true;
-                                }
-                            })();
-                            window._fbq = window._fbq || [];
-                            window._fbq.push(['track', conversion, {'value': '0.00', 'currency': 'USD'}]);
-                        }
-
                         setTimeout(function () {
                             $('#quiz-results').modal('hide');
                             $('#offer').html('<h2 class="quiz-completed"><i class="fa fa-check-circle"></i> <br> <strong>You scored ' + response.score + '/96</strong><br><small>' + response.feedback + '</small></h2>');
@@ -144,6 +110,40 @@ jQuery(function ($) {
                                 $('#offer').html('<h2 class="quiz-completed"><i class="fa fa-check-circle"></i> <br> <strong>You scored ' + response.score + '/96</strong><br><small>' + response.feedback + '</small></h2> <a href="' + $('#valuator-link').val() + '" class="btn btn-primary btn-lg" id="show-offer">Click Here To See What Your Home Is Worth <br> <small>(Based On Official Data of Recently Sold Listings In Your Area)</small></a>');
                             }
                             $('.quiz-page').animate({'padding-top': '5%'}, 500);
+
+                            var retargeting = $('#retargeting').val(),
+                                conversion = $('#conversion').val();
+                            if (retargeting != '') {
+                                (function () {
+                                    var _fbq = window._fbq || (window._fbq = []);
+                                    if (!_fbq.loaded) {
+                                        var fbds = document.createElement('script');
+                                        fbds.async = true;
+                                        fbds.src = '//connect.facebook.net/en_US/fbds.js';
+                                        var s = document.getElementsByTagName('script')[0];
+                                        s.parentNode.insertBefore(fbds, s);
+                                        _fbq.loaded = true;
+                                    }
+                                    _fbq.push(['addPixelId', retargeting]);
+                                })();
+                                window._fbq = window._fbq || [];
+                                window._fbq.push(['track', 'PixelInitialized', {}]);
+                            }
+                            if (conversion != '') {
+                                (function () {
+                                    var _fbq = window._fbq || (window._fbq = []);
+                                    if (!_fbq.loaded) {
+                                        var fbds = document.createElement('script');
+                                        fbds.async = true;
+                                        fbds.src = '//connect.facebook.net/en_US/fbds.js';
+                                        var s = document.getElementsByTagName('script')[0];
+                                        s.parentNode.insertBefore(fbds, s);
+                                        _fbq.loaded = true;
+                                    }
+                                })();
+                                window._fbq = window._fbq || [];
+                                window._fbq.push(['track', conversion, {'value': '0.00', 'currency': 'USD'}]);
+                            }
                         }, 1000);
                     }
                 });
@@ -243,3 +243,10 @@ jQuery(function ($) {
     }
 });
 
+var delay = (function () {
+    var timer = 0;
+    return function (callback, ms) {
+        clearTimeout(timer);
+        timer = setTimeout(callback, ms);
+    };
+})();
