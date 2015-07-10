@@ -1,7 +1,7 @@
 <?php
 /*
  * Plugin Name: FSBO Quiz
- * Version: 1.0.3
+ * Version: 1.0.4
  * Plugin URI: http://www.coldturkeygroup.com/
  * Description: Multiple choice quiz to help potential home owners decide whether or not they're ready to sell.
  * Author: Cold Turkey Group
@@ -16,11 +16,14 @@
 
 if (!defined('ABSPATH')) exit;
 
+if ( ! defined( 'PLATFORM_FUNNEL' ) )
+	define( 'PLATFORM_FUNNEL', 'FSBO_QUIZ' );
+
 if (!defined('FSBO_QUIZ_PLUGIN_PATH'))
     define('FSBO_QUIZ_PLUGIN_PATH', trailingslashit(plugin_dir_path(__FILE__)));
 
 if (!defined('FSBO_QUIZ_PLUGIN_VERSION'))
-    define('FSBO_QUIZ_PLUGIN_VERSION', '1.0.3');
+    define('FSBO_QUIZ_PLUGIN_VERSION', '1.0.4');
 
 require_once('classes/class-fsbo-quiz.php');
 
