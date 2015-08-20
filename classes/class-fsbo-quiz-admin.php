@@ -243,7 +243,7 @@ class FSBOQuiz_Admin
         }
 
         echo '<div class="wrap" id="' . $this->token . '_settings">
-					<h2>' . __('FSBO Quiz Settings', $this->token) . '</h2>
+					<h1>' . __('FSBO Quiz Settings', $this->token) . '</h1>
 					<form method="post" action="options.php" enctype="multipart/form-data">
 						<div class="clear"></div>';
 
@@ -276,7 +276,7 @@ class FSBOQuiz_Admin
 
         ?>
         <div class="wrap" id="<?= $this->token ?>_leads">
-            <h2>FSBO Quiz Leads</h2>
+            <h1>FSBO Quiz Leads</h1>
 
             <?php
             if (isset($_GET['deleted']) && $_GET['deleted'] == true)
