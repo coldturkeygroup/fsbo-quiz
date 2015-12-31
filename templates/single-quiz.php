@@ -12,7 +12,7 @@ global $pf_fsbo_quiz, $wp_query;
 
 $id = get_the_ID();
 $title = get_the_title();
-$permalink = get_permalink();
+$frontdesk_campaign = get_post_meta($id, 'frontdesk_campaign', true);
 $broker = get_post_meta($id, 'legal_broker', true);
 $retargeting = get_post_meta($id, 'retargeting', true);
 $conversion = get_post_meta($id, 'conversion', true);
@@ -469,7 +469,7 @@ if ($hover_setting && strlen($hover_setting) > 0 && $hover_setting != '') {
                             <input type="text" name="email" id="email" class="form-control" required="required" placeholder="Email Address">
                         </div>
 
-                        <input name="permalink" type="hidden" value="<?= $permalink; ?>">
+                        <input name="frontdesk_campaign" type="hidden" value="<?= $frontdesk_campaign ?>">
                         <input name="action" type="hidden" id="<?= $token ?>_submit_quiz" value="<?= $token ?>_submit_quiz">
                         <?php wp_nonce_field($token . '_submit_quiz', $token . '_nonce'); ?>
                         <input name="quiz_id" type="hidden" value="<?= $id ?>">
@@ -490,17 +490,30 @@ if ($hover_setting && strlen($hover_setting) > 0 && $hover_setting != '') {
         ?>
         <!-- Facebook Pixel Code -->
         <script>
-        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-        n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-        document,'script','//connect.facebook.net/en_US/fbevents.js');
+            !function (f, b, e, v, n, t, s) {
+                if (f.fbq)return;
+                n = f.fbq = function () {
+                    n.callMethod ?
+                        n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+                };
+                if (!f._fbq)f._fbq = n;
+                n.push = n;
+                n.loaded = !0;
+                n.version = '2.0';
+                n.queue = [];
+                t = b.createElement(e);
+                t.async = !0;
+                t.src = v;
+                s = b.getElementsByTagName(e)[0];
+                s.parentNode.insertBefore(t, s)
+            }(window,
+                document, 'script', '//connect.facebook.net/en_US/fbevents.js');
 
-        fbq('init', '<?= $retargeting ?>');
-        fbq('track', "PageView");</script>
+            fbq('init', '<?= $retargeting ?>');
+            fbq('track', "PageView");</script>
         <noscript><img height="1" width="1" style="display:none"
-        src="https://www.facebook.com/tr?id=<?= $retargeting ?>&ev=PageView&noscript=1"
-        /></noscript>
+                       src="https://www.facebook.com/tr?id=<?= $retargeting ?>&ev=PageView&noscript=1"
+            /></noscript>
         <?php
         echo '<input type="hidden" id="retargeting" value="' . $retargeting . '">';
     }
