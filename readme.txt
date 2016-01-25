@@ -3,7 +3,7 @@ Contributors: Aaron Huisinga
 Tags: real estate, platform, fsbo, quiz
 Requires at least: 3.5
 Tested up to: 4.3
-Stable tag: 1.2
+Stable tag: 1.2.1
 
 Simple real estate lead generation through a quiz that helps qualify prospective home seller.
 
@@ -11,7 +11,7 @@ Simple real estate lead generation through a quiz that helps qualify prospective
 
 The FSBO Quiz allows users to create a multiple choice quiz that will help home owners trying to sell their own home find out if they're making the right decision.
 
-The plugin hooks into FrontDesk using the official API to sync the data of the person taking the quiz.
+The plugin hooks into the Platform CRM using the official API to sync the data of the person taking the quiz.
 
 The website owner is able to collect the name, email, and address information of the user and has a new potential customer.
 
