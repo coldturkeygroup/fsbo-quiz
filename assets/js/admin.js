@@ -19,7 +19,7 @@ jQuery(document).ready(function ($) {
   // Uploading files
   var file_frame;
 
-  jQuery.fn.ssp_upload_media_file = function (button, preview_media) {
+  jQuery.fn.fsbo_quiz_upload_media_file = function (button, preview_media) {
     var button_id = button.attr('id');
     var field_id = button_id.replace('_button', '');
     var preview_id = button_id.replace('_button', '_preview');
@@ -54,7 +54,7 @@ jQuery(document).ready(function ($) {
 
   jQuery('#upload_media_file_button').click(function (event) {
     event.preventDefault();
-    jQuery.fn.ssp_upload_media_file(jQuery(this), false);
+    jQuery.fn.fsbo_quiz_upload_media_file(jQuery(this), false);
   });
 
 });
