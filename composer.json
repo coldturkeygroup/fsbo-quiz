@@ -10,9 +10,6 @@
       "homepage": "https://coldturkeygroup.com"
     }
   ],
-  "config": {
-    "vendor-dir": "assets/vendor"
-  },
   "type": "wordpress-plugin",
   "require": {
     "php": ">=7.0",
