@@ -5,7 +5,7 @@ namespace ColdTurkey\FSBOQuiz;
 if (!defined('ABSPATH')) exit; // Exit if accessed directly.
 
 // Composer autoloader
-require_once FSBO_QUIZ_PLUGIN_PATH . '../vendor/autoload.php';
+require_once FSBO_QUIZ_PLUGIN_PATH . 'vendor/autoload.php';
 
 use ColdTurkey\FSBOQuiz\FrontDesk;
 
