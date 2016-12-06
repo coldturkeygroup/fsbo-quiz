@@ -10,17 +10,18 @@
       "homepage": "https://coldturkeygroup.com"
     }
   ],
-  "autoload": {
-    "classmap": [
-      "classes"
-    ]
-  },
   "config": {
     "vendor-dir": "assets/vendor"
   },
   "type": "wordpress-plugin",
   "require": {
-    "php": ">=5.4.0",
-    "guzzlehttp/guzzle": "~4.0"
+    "php": ">=7.0",
+    "composer/installers": "v1.0.12",
+    "guzzlehttp/guzzle": "~6.0"
+  },
+  "autoload": {
+    "classmap": [
+      "classes"
+    ]
   }
 }
