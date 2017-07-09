@@ -2,12 +2,12 @@
 
 namespace ColdTurkey\FSBOQuiz;
 
-if (!defined('ABSPATH')) exit; // Exit if accessed directly.
+if (!defined('ABSPATH')) {
+    exit;
+} // Exit if accessed directly.
 
 // Composer autoloader
 require_once FSBO_QUIZ_PLUGIN_PATH . 'vendor/autoload.php';
-
-use ColdTurkey\FSBOQuiz\FrontDesk;
 
 class FSBOQuiz
 {
@@ -90,19 +90,19 @@ class FSBOQuiz
     public function register_post_type()
     {
         $labels = [
-            'name' => _x('FSBO Quizzes', 'post type general name', $this->token),
-            'singular_name' => _x('FSBO Quiz', 'post type singular name', $this->token),
-            'add_new' => _x('Add New', $this->token, $this->token),
-            'add_new_item' => sprintf(__('Add New %s', $this->token), __('FSBO Quiz', $this->token)),
-            'edit_item' => sprintf(__('Edit %s', $this->token), __('FSBO Quiz', $this->token)),
-            'new_item' => sprintf(__('New %s', $this->token), __('FSBO Quiz', $this->token)),
-            'all_items' => sprintf(__('All %s', $this->token), __('FSBO Quizzes', $this->token)),
-            'view_item' => sprintf(__('View %s', $this->token), __('FSBO Quiz', $this->token)),
-            'search_items' => sprintf(__('Search %a', $this->token), __('FSBO Quizzes', $this->token)),
-            'not_found' => sprintf(__('No %s Found', $this->token), __('FSBO Quizzes', $this->token)),
+            'name'               => _x('FSBO Quizzes', 'post type general name', $this->token),
+            'singular_name'      => _x('FSBO Quiz', 'post type singular name', $this->token),
+            'add_new'            => _x('Add New', $this->token, $this->token),
+            'add_new_item'       => sprintf(__('Add New %s', $this->token), __('FSBO Quiz', $this->token)),
+            'edit_item'          => sprintf(__('Edit %s', $this->token), __('FSBO Quiz', $this->token)),
+            'new_item'           => sprintf(__('New %s', $this->token), __('FSBO Quiz', $this->token)),
+            'all_items'          => sprintf(__('All %s', $this->token), __('FSBO Quizzes', $this->token)),
+            'view_item'          => sprintf(__('View %s', $this->token), __('FSBO Quiz', $this->token)),
+            'search_items'       => sprintf(__('Search %a', $this->token), __('FSBO Quizzes', $this->token)),
+            'not_found'          => sprintf(__('No %s Found', $this->token), __('FSBO Quizzes', $this->token)),
             'not_found_in_trash' => sprintf(__('No %s Found In Trash', $this->token), __('FSBO Quizzes', $this->token)),
-            'parent_item_colon' => '',
-            'menu_name' => __('FSBO Quizzes', $this->token)
+            'parent_item_colon'  => '',
+            'menu_name'          => __('FSBO Quizzes', $this->token)
         ];
 
         $slug = __('fsbo-quiz', 'pf_fsbo_quiz');
@@ -112,20 +112,20 @@ class FSBOQuiz
         }
 
         $args = [
-            'labels' => $labels,
-            'public' => true,
-            'publicly_queryable' => true,
+            'labels'              => $labels,
+            'public'              => true,
+            'publicly_queryable'  => true,
             'exclude_from_search' => true,
-            'show_ui' => true,
-            'show_in_menu' => true,
-            'query_var' => true,
-            'rewrite' => ['slug' => $slug],
-            'capability_type' => 'post',
-            'has_archive' => false,
-            'hierarchical' => false,
-            'supports' => ['title'],
-            'menu_position' => 5,
-            'menu_icon' => 'dashicons-admin-quiz'
+            'show_ui'             => true,
+            'show_in_menu'        => true,
+            'query_var'           => true,
+            'rewrite'             => ['slug' => $slug],
+            'capability_type'     => 'post',
+            'has_archive'         => false,
+            'hierarchical'        => false,
+            'supports'            => ['title'],
+            'menu_position'       => 5,
+            'menu_icon'           => 'dashicons-admin-quiz'
         ];
 
         register_post_type($this->token, $args);
@@ -220,15 +220,15 @@ class FSBOQuiz
         global $post, $post_ID;
 
         $messages[$this->token] = [
-            0 => '', // Unused. Messages start at index 1.
-            1 => sprintf(__('Quiz updated. %sView page%s.', $this->token), '<a href="' . esc_url(get_permalink($post_ID)) . '">', '</a>'),
-            4 => __('Quiz updated.', $this->token),
+            0  => '', // Unused. Messages start at index 1.
+            1  => sprintf(__('Quiz updated. %sView page%s.', $this->token), '<a href="' . esc_url(get_permalink($post_ID)) . '">', '</a>'),
+            4  => __('Quiz updated.', $this->token),
             /* translators: %s: date and time of the revision */
-            5 => isset($_GET['revision']) ? sprintf(__('Quiz restored to revision from %s.', $this->token), wp_post_revision_title((int)$_GET['revision'], false)) : false,
-            6 => sprintf(__('Quiz published. %sView quiz%s.', $this->token), '<a href="' . esc_url(get_permalink($post_ID)) . '">', '</a>'),
-            7 => __('Quiz saved.', $this->token),
-            8 => sprintf(__('Quiz submitted. %sPreview quiz%s.', $this->token), '<a target="_blank" href="' . esc_url(add_query_arg('preview', 'true', get_permalink($post_ID))) . '">', '</a>'),
-            9 => sprintf(__('Quiz scheduled for: %1$s. %2$sPreview quiz%3$s.', $this->token), '<strong>' . date_i18n(__('M j, Y @ G:i', $this->token), strtotime($post->post_date)) . '</strong>', '<a target="_blank" href="' . esc_url(get_permalink($post_ID)) . '">', '</a>'),
+            5  => isset($_GET['revision']) ? sprintf(__('Quiz restored to revision from %s.', $this->token), wp_post_revision_title((int) $_GET['revision'], false)) : false,
+            6  => sprintf(__('Quiz published. %sView quiz%s.', $this->token), '<a href="' . esc_url(get_permalink($post_ID)) . '">', '</a>'),
+            7  => __('Quiz saved.', $this->token),
+            8  => sprintf(__('Quiz submitted. %sPreview quiz%s.', $this->token), '<a target="_blank" href="' . esc_url(add_query_arg('preview', 'true', get_permalink($post_ID))) . '">', '</a>'),
+            9  => sprintf(__('Quiz scheduled for: %1$s. %2$sPreview quiz%3$s.', $this->token), '<strong>' . date_i18n(__('M j, Y @ G:i', $this->token), strtotime($post->post_date)) . '</strong>', '<a target="_blank" href="' . esc_url(get_permalink($post_ID)) . '">', '</a>'),
             10 => sprintf(__('Quiz draft updated. %sPreview quiz%s.', $this->token), '<a target="_blank" href="' . esc_url(add_query_arg('preview', 'true', get_permalink($post_ID))) . '">', '</a>'),
         ];
 
@@ -293,15 +293,16 @@ class FSBOQuiz
                     global $post;
                     $args = [
                         'posts_per_page' => 20,
-                        'post_type' => $v['default'],
-                        'post_status' => 'publish'
+                        'post_type'      => $v['default'],
+                        'post_status'    => 'publish'
                     ];
                     $custom_posts = get_posts($args);
                     foreach ($custom_posts as $post) : setup_postdata($post);
                         $link = str_replace(home_url(), '', get_permalink());
                         $selected = '';
-                        if ($link == $data)
+                        if ($link == $data) {
                             $selected = 'selected';
+                        }
 
                         $html .= '<option value="' . $link . '" ' . $selected . '>' . get_the_title() . '</option>';
                     endforeach;
@@ -314,8 +315,9 @@ class FSBOQuiz
                     $html .= '<select style="width:100%" name="' . esc_attr($k) . '" id="' . esc_attr($k) . '">';
                     foreach ($v['options'] as $option) {
                         $selected = '';
-                        if ($option == $data)
+                        if ($option == $data) {
                             $selected = 'selected';
+                        }
 
                         $html .= '<option value="' . $option . '" ' . $selected . '>' . ucfirst($option) . '</option>';
                     }
@@ -424,14 +426,14 @@ class FSBOQuiz
             ]);
             wp_enqueue_script('icheck');
             wp_enqueue_script($this->token . '-js');
-            wp_register_script('mailgun-validator', esc_url($this->assets_url . 'js/mailgun-validator.js'), [
+            wp_register_script('platform-email-validator', esc_url($this->assets_url . 'js/platform-email-validator.js'), [
                 'jquery'
             ], FSBO_QUIZ_PLUGIN_VERSION);
-            wp_enqueue_script('mailgun-validator');
+            wp_enqueue_script('platform-email-validator');
 
             $localize = [
-                'ajaxurl' => admin_url('admin-ajax.php'),
-                'mailgun' => defined('MAILGUN_PUBLIC') ? MAILGUN_PUBLIC : ''
+                'ajaxurl'           => admin_url('admin-ajax.php'),
+                'platformvalidator' => defined('MAILGUN_PUBLIC') ? MAILGUN_PUBLIC : ''
             ];
             wp_localize_script($this->token . '-js', 'FSBOQuiz', $localize);
         }
@@ -449,96 +451,96 @@ class FSBOQuiz
         $fields = [];
 
         $fields['home_valuator'] = [
-            'name' => __('Link To Home Valuator', $this->token),
+            'name'        => __('Link To Home Valuator', $this->token),
             'description' => __('The last step of the funnel allows you to link the user to your Home Valuator. Enter the link for the funnel here.', $this->token),
             'placeholder' => '',
-            'type' => 'posts',
-            'default' => 'pf_valuator',
-            'section' => 'info'
+            'type'        => 'posts',
+            'default'     => 'pf_valuator',
+            'section'     => 'info'
         ];
 
         $fields['area'] = [
-            'name' => __('Quiz Area', $this->token),
+            'name'        => __('Quiz Area', $this->token),
             'description' => __('Question 4 requires you to define your area. Select to display your county or city.', $this->token),
             'placeholder' => '',
-            'type' => 'select',
-            'default' => '',
-            'options' => ['county', 'city', 'state', 'custom'],
-            'section' => 'info'
+            'type'        => 'select',
+            'default'     => '',
+            'options'     => ['county', 'city', 'state', 'custom'],
+            'section'     => 'info'
         ];
 
         $fields['area_custom'] = [
-            'name' => __('Custom Quiz Area', $this->token),
+            'name'        => __('Custom Quiz Area', $this->token),
             'description' => __('', $this->token),
             'placeholder' => '',
-            'type' => 'hidden',
-            'default' => '',
-            'options' => '',
-            'section' => 'info'
+            'type'        => 'hidden',
+            'default'     => '',
+            'options'     => '',
+            'section'     => 'info'
         ];
 
         $fields['closing'] = [
-            'name' => __('Do You Split Closing Costs?', $this->token),
+            'name'        => __('Do You Split Closing Costs?', $this->token),
             'description' => __('One quiz question assumes that you split closing costs with your buyer. ', $this->token),
             'placeholder' => '',
-            'type' => 'select',
-            'default' => '',
-            'options' => ['yes', 'no'],
-            'section' => 'info'
+            'type'        => 'select',
+            'default'     => '',
+            'options'     => ['yes', 'no'],
+            'section'     => 'info'
         ];
 
         $fields['legal_broker'] = [
-            'name' => __('Your Legal Broker', $this->token),
+            'name'        => __('Your Legal Broker', $this->token),
             'description' => __('This will be displayed on the bottom of each page.', $this->token),
             'placeholder' => '',
-            'type' => 'text',
-            'default' => '',
-            'section' => 'info'
+            'type'        => 'text',
+            'default'     => '',
+            'section'     => 'info'
         ];
 
         $fields['email'] = [
-            'name' => __('Notification Email', $this->token),
+            'name'        => __('Notification Email', $this->token),
             'description' => __('This address will be emailed when a user opts-into your ad. If left empty, emails will be sent to the default address for your site.', $this->token),
             'placeholder' => '',
-            'type' => 'text',
-            'default' => '',
-            'section' => 'info'
+            'type'        => 'text',
+            'default'     => '',
+            'section'     => 'info'
         ];
 
         $fields['retargeting'] = [
-            'name' => __('Facebook Pixel - Retargeting (optional)', $this->token),
+            'name'        => __('Facebook Pixel - Retargeting (optional)', $this->token),
             'description' => __('Facebook Pixel to allow retargeting of people that view this quiz.', $this->token),
             'placeholder' => __('Ex: 4123423454', $this->token),
-            'type' => 'text',
-            'default' => '',
-            'section' => 'info'
+            'type'        => 'text',
+            'default'     => '',
+            'section'     => 'info'
         ];
 
         $fields['conversion'] = [
-            'name' => __('Facebook Pixel - Conversion (optional)', $this->token),
+            'name'        => __('Facebook Pixel - Conversion (optional)', $this->token),
             'description' => __('Facebook Pixel to allow conversion tracking of people that submit this quiz.', $this->token),
             'placeholder' => __('Ex: 170432123454', $this->token),
-            'type' => 'text',
-            'default' => '',
-            'section' => 'info'
+            'type'        => 'text',
+            'default'     => '',
+            'section'     => 'info'
         ];
 
         $fields['primary_color'] = [
-            'name' => __('Primary Color', $this->token),
+            'name'        => __('Primary Color', $this->token),
             'description' => __('Change the primary color of the quiz.', $this->token),
             'placeholder' => '',
-            'type' => 'color',
-            'default' => '',
-            'section' => 'info'
+            'type'        => 'color',
+            'default'     => '',
+            'section'     => 'info'
         ];
 
         $fields['hover_color'] = [
-            'name' => __('Hover Color', $this->token),
+            'name'        => __('Hover Color', $this->token),
             'description' => __('Change the button hover color of the quiz.', $this->token),
             'placeholder' => '',
-            'type' => 'color',
-            'default' => '',
-            'section' => 'info'
+            'type'        => 'color',
+            'default'     => '',
+            'section'     => 'info'
         ];
 
         return apply_filters($this->token . '_valuation_fields', $fields);
@@ -553,8 +555,9 @@ class FSBOQuiz
     {
         // Single FSBO quiz page template
         if (is_single() && get_post_type() == $this->token) {
-            if (!defined('PLATFORM_FUNNEL'))
+            if (!defined('PLATFORM_FUNNEL')) {
                 define('PLATFORM_FUNNEL', 'FSBO_QUIZ');
+            }
 
             include($this->template_path . 'single-quiz.php');
             exit;
@@ -574,8 +577,9 @@ class FSBOQuiz
         if ($pageID) {
             $file = get_post_meta($pageID, 'media_file', true);
 
-            if (preg_match('/(\.jpg|\.png|\.bmp|\.gif)$/', $file))
+            if (preg_match('/(\.jpg|\.png|\.bmp|\.gif)$/', $file)) {
                 return '<img src="' . $file . '" style="margin-left:auto;margin-right:auto;margin-bottom:0px;display:block;" class="img-responsive img-thumbnail">';
+            }
         }
 
         return false;
@@ -591,8 +595,9 @@ class FSBOQuiz
      */
     public function create_frontdesk_campaign($post_ID)
     {
-        if (get_post_type($post_ID) != $this->token)
+        if (get_post_type($post_ID) != $this->token) {
             return false;
+        }
 
         global $wpdb;
         $permalink = get_permalink($post_ID);
@@ -606,8 +611,9 @@ class FSBOQuiz
             $mapped = $wpdb->get_var("SELECT domain FROM {$wpdb->dmtable} WHERE blog_id = '{$blog_id}' ORDER BY CHAR_LENGTH(domain) DESC LIMIT 1");
             $domain = $wpdb->get_var("SELECT option_value FROM {$options_table} WHERE option_name = 'siteurl' LIMIT 1");
 
-            if ($mapped)
+            if ($mapped) {
                 $permalink = str_replace($domain, 'https://' . $mapped, $permalink);
+            }
         }
 
         if (($_POST['post_status'] != 'publish') || ($_POST['original_post_status'] == 'publish')) {
@@ -658,8 +664,9 @@ class FSBOQuiz
         ];
 
         foreach ($input as $key => $value) {
-            if (strpos($key, 'question_') === false)
+            if (strpos($key, 'question_') === false) {
                 continue;
+            }
 
             $answer_score = explode('-', $value);
             array_push($responses, $answer_score[0]);
@@ -692,7 +699,10 @@ class FSBOQuiz
         $answers_eleven = ['a' => 'Yes', 'b' => 'No'];
         if ($closing_costs == 'no') {
             $question_eleven = 'Does your home\'s exterior showcase good "curb appeal?"';
-            $answers_eleven = ['a' => 'Yes, I take good care of my lawn, landscaping, etc.', 'b' => 'It\'s not bad, but it could use some work.'];
+            $answers_eleven = [
+                'a' => 'Yes, I take good care of my lawn, landscaping, etc.',
+                'b' => 'It\'s not bad, but it could use some work.'
+            ];
         }
 
         $question_bank = [
@@ -854,8 +864,8 @@ class FSBOQuiz
             // Create the prospect on FrontDesk
             $frontdesk_id = $this->frontdesk->createProspect([
                 'campaign_id' => $frontdesk_campaign,
-                'first_name' => $first_name,
-                'email' => $email
+                'first_name'  => $first_name,
+                'email'       => $email
             ]);
 
             if ($frontdesk_id != null) {
@@ -914,14 +924,14 @@ class FSBOQuiz
             // Update the FrontDesk prospect if exists
             if ($subscriber->frontdesk_id != null) {
                 $this->frontdesk->updateProspect($subscriber->frontdesk_id, [
-                    'email' => $subscriber->email,
+                    'email'     => $subscriber->email,
                     'last_name' => $last_name,
-                    'address' => $address,
+                    'address'   => $address,
                     'address_2' => $address_2,
-                    'city' => $city,
-                    'state' => $state,
-                    'zip_code' => $zip_code,
-                    'phone' => $phone
+                    'city'      => $city,
+                    'state'     => $state,
+                    'zip_code'  => $zip_code,
+                    'phone'     => $phone
                 ]);
             }
 
