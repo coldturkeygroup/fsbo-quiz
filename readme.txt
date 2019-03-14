@@ -2,8 +2,8 @@
 Contributors: Aaron Huisinga
 Tags: real estate, platform, fsbo, quiz
 Requires at least: 3.5
-Tested up to: 4.3
-Stable tag: 1.4.8
+Tested up to: 5.1
+Stable tag: 1.4.9
 
 Simple real estate lead generation through a quiz that helps qualify prospective home seller.
 
