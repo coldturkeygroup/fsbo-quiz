@@ -1,6 +1,6 @@
 <?php
 
-\namespace ColdTurkey\FSBOQuiz;
+namespace ColdTurkey\FSBOQuiz;
 
 if (!defined('ABSPATH')) exit; // Exit if accessed directly.
 
